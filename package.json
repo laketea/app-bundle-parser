@@ -1,0 +1,23 @@
+{
+  "name": "app-bundle-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+  },
+  "dependencies": {
+    "adbkit-apkreader": "git+https://github.com/laketea/adbkit-apkreader.git",
+    "bplist": "0.0.4",
+    "buffer": "^3.2.2",
+    "plist": "^1.1.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "apk-parser",
+  "authors": [
+    "laketea <laketea@163.com.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#~1.4.8",
+    "ng-file-upload": "~11.1.1",
+    "jquery": "~2.2.0"
+  }
+}

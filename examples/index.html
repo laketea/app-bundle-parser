@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>apk parse online </title>
+    <script src="./bower_components/jquery/dist/jquery.js"></script>
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="../dist/zip.all.js"></script>
+     <script src="../dist/png.js"></script>
+    <script src="../dist/app-bundle-parser.js"></script>
+</head>
+<style type="text/css">
+.thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
+}
+</style>
+
+<body ng-app="fileUpload" ng-controller="MyCtrl">
+    <h4>Upload on file select</h4>
+    <button type="file" ngf-select="uploadFiles($file)" ngf-accept="'application/vnd.android'" ngf-max-height="1000" ngf-max-size="10000MB">
+        Select File</button>
+    <br>
+    <br> File:
+    <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+        <span class="progress" ng-show="f.progress >= 0">
+          <div style="width:{{f.progress}}%"  
+               ng-bind="f.progress + '%'"></div>
+      </span>
+    </div>
+    {{errorMsg}}
+</body>
+
+</html>
+<script type="text/javascript">
+//inject angular file upload directives and services.
+var app = angular.module('fileUpload', ['ngFileUpload']);
+
+app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function($scope, Upload, $timeout) {
+    $scope.uploadFiles = function(file, errFiles) {
+        $scope.f = file;
+        console.log("upload", file);
+        if ($scope.f) {
+
+            AppBundleInfo.readApp(file).then(function(apk) {
+                var image = new Image();
+                file;
+                if(apk.app.iconBlob){
+                    image.src = window.URL.createObjectURL(apk.app.iconBlob);
+                }
+                if(apk.app.iconBase64){
+                    image.src = apk.iconBase64;
+                }
+
+                if(!apk.app.iconBlob){
+                    alert("icon not avaliable")
+                }
+
+                image.onerror = function(){
+                    alert("eerrrr");
+                }
+
+                $("body").append(JSON.stringify(apk))
+                $("body").append(image);
+            }, function() {
+                console.log("error");
+            })
+
+        }
+    }
+}]);
+</script>

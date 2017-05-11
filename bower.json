@@ -1,0 +1,22 @@
+{
+  "name": "app-bundle-parser",
+  "description": "",
+  "main": [
+    "dist/zip.all.js",
+    "dist/png.js",
+    "dist/app-bundle-parser.js"
+  ],
+  "authors": [
+    "laketea <laketea@163.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
